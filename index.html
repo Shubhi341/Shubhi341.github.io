@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>My Personal Website</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #ffffff;
+      color: black;
+    }
+
+    .highlight {
+      background-color: #ADD8E6;
+      color: black;
+      padding: 20px;
+      font-size: 24px;
+      text-align: center;
+    }
+
+    nav {
+      background-color: #1e88e5;
+      display: flex;
+      justify-content: space-around;
+      padding: 15px;
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    section {
+      display: none;
+      padding: 30px;
+      border-bottom: 1px solid #444;
+    }
+
+    section.active {
+      display: block;
+    }
+
+    img {
+      max-width: 300px;
+      margin: 10px;
+      border-radius: 10px;
+    }
+
+    textarea {
+      width: 100%;
+      height: 200px;
+      background-color: white;
+      color: black;
+      padding: 10px;
+      border-radius: 5px;
+    }
+
+    button {
+      background-color: #1e88e5;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      margin-top: 10px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #1565c0;
+    }
+
+    .output {
+      background-color: #1f1f1f;
+      padding: 20px;
+      border-radius: 10px;
+      margin-top: 20px;
+      white-space: pre-line;
+    }
+
+    .count-list {
+      margin-left: 20px;
+      line-height: 1.6;
+    }
+
+    .side-panel {
+      position: fixed;
+      top: 30%;
+      right: 20px;
+      width: 300px;
+      padding: 25px;
+      background: linear-gradient(135deg, #6e00ff, #00c3ff, #ffe600);
+      color: white;
+      border-radius: 20px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+      text-align: center;
+      z-index: 1000;
+      animation: float-in 0.8s ease-out forwards;
+    }
+
+    .side-panel h3 {
+      font-size: 22px;
+      margin-bottom: 15px;
+    }
+
+    .side-panel p {
+      font-size: 16px;
+      margin-bottom: 20px;
+    }
+
+    .panel-button {
+      display: inline-block;
+      margin-top: 15px;
+      padding: 12px 20px;
+      background-color: #ffffff;
+      color: #000;
+      font-weight: bold;
+      text-decoration: none;
+      border-radius: 25px;
+      transition: background-color 0.3s, color 0.3s;
+      font-size: 16px;
+    }
+
+    .panel-button:hover {
+      background-color: #ffcc00;
+      color: #000;
+    }
+
+    @keyframes float-in {
+      from {
+        right: -300px;
+        opacity: 0;
+      }
+      to {
+        right: 20px;
+        opacity: 1;
+      }
+    }
+
+    /* Flex container for about and picture descriptions */
+    .flex-container {
+      display: flex;
+      align-items: flex-start;
+      gap: 30px;
+      flex-wrap: wrap;
+      margin-bottom: 30px;
+    }
+
+    .flex-container img {
+      max-width: 300px;
+      height: auto;
+      border-radius: 10px;
+    }
+
+    .flex-container p {
+      flex: 1;
+      font-size: 16px;
+      line-height: 1.6;
+    }
+    
+    /* Tracking demo styles */
+    .tracking-demo {
+      margin-top: 20px;
+      padding: 15px;
+      background-color: #2d2d2d;
+      border-radius: 8px;
+    }
+    
+    .tracking-demo h3 {
+      margin-bottom: 15px;
+      color: #1e88e5;
+    }
+    
+    .tracking-elements {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 15px;
+    }
+    
+    .track-item {
+      padding: 10px 15px;
+      background-color: white;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+    
+    .track-item:hover {
+      background-color: white;
+    }
+    
+    .track-img {
+      width: 100px;
+      height: 100px;
+      background-color: white;
+      border-radius: 5px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+    }
+    
+    .track-log {
+      margin-top: 20px;
+      padding: 10px;
+      background-color: white;
+      border: 1px solid #333;
+      border-radius: 5px;
+      height: 150px;
+      overflow-y: auto;
+      font-family: monospace;
+    }
+  </style>
+</head>
+<body>
+
+<!-- Larger Contact Bubble -->
+<div class="side-panel">
+  <h3>🌟 Let's Connect!</h3>
+  <p>Interested in my work?</p>
+  <a href="mailto:shubhi.patel@students.iiit.ac.in" class="panel-button">Contact Me</a>
+</div>
+
+<h1 class="highlight">Welcome to My Personal Website</h1>
+
+<nav>
+  <a onclick="showSection('about')">About</a>
+  <a onclick="showSection('pictures')">Pictures</a>
+  <a onclick="showSection('education')">Education</a>
+  <a onclick="showSection('skills')">Skills</a>
+  <a onclick="showSection('cv')">CV</a>
+  <a onclick="showSection('tracking')">Tracking</a>
+  <a onclick="showSection('textanalysis')">Text Analysis</a>
+</nav>
+
+<section id="about" class="active">
+  <h2>About Me</h2>
+  <div class="flex-container">
+    <img src="profile.jpg" alt="Profile Picture">
+    <p>Hello! My name is Shubhi Patel.<br>
+      I am from district panna m.p.
+      I am pursuing my b.tech degree in CSE in iiit hyderabad.<br>
+      This is my first year of degree.
+      I am much inspired with my parents .They never lose confidence.<br>
+      Their honesty, hard work and goodness really inspires me a lot.
+      For them, humanity is the most prior thing and hence for me.<br>
+      I like to code and seeing when I randomly put the numbers on my computer and it gives me the output.<br>
+      I am passionate about technology and learning.
+      I enjoy working on web development, coding, and IoT projects.<br>
+      I believe in continuous growth and collaboration.
+      since my childhood, I am also much fond of with nature and like to spend time with nature.<br></p>
+  </div>
+</section>
+
+<section id="pictures">
+  <h2>My Pictures</h2>
+
+  <div class="flex-container">
+    <img src="p4.jpg" alt="p4">
+    <p>Pandav Falls and Pandav Caves are located in Panna city of Madhya Pradesh.<br>
+    This place is a beautiful place located in the Panna Tiger Reserve forest area.<br>
+    This place is comprised of natural, historical and religious places.<br>
+    There is a beautiful waterfall here. The height of Pandav Falls is 30 meters.<br>
+    The view here is very picturesque during the rainy season.<br>
+    This area is very important from the point of view of biodiversity.<br>
+    Many medicinal plants are found here. Which is very important for human life.</p>
+  </div>
+
+  <div class="flex-container">
+    <img src="birthplace1.jpg" alt="Birthplace">
+    <p>Jugal Kishore Ji Temple was built by Raja Hindupat Singh, the fourth Bundela King of Panna, during his reign from 1758 to 1778.<br>
+    According to the legends, the idol placed in the garbha griha of this temple has been brought from Brindavana through Orcha.<br>
+    The ornaments and attire of the lord reflect the Bundelkhandi style.<br>
+    The temple has all the architectural features of Bundela temples including a nat mandapa, bhog mandapa and a pradakshna path.<br>
+    The architecture is quite wonderful - a beautiful mix of Hindu and Mughal architecture.<br>
+    The interiors are amazing. The place is clean and everyone is welcome.</p>
+  </div>
+
+  <div class="flex-container">
+    <img src="birthplace2.jpg" alt="Birthplace">
+    <p>Center of diamond mining in India, Panna.<br>
+    Witness the ores being crushed, screened, jiggled and diamonds are handpicked from the concentrate being spread on the secure ground.<br>
+    The district's Majhgawan mine, operated by NMDC (National Mineral Development Corporation), is the only mechanized diamond mine in India.<br>
+    Panna also boasts a history dating back to Gond settlements and was later made the capital by Raja Chhatrasal Bundela.</p>
+  </div>
+
+  <div class="flex-container">
+    <img src="p1.jpg" alt="p1">
+    <img src="p2.jpg" alt="p2">
+  </div>
+</section>
+
+<section id="education">
+  <h2>Education Background</h2>
+  <ul>
+    <li>Primary schooling: completed from my village's government school.</li>
+    <li>Secondary education: Javahar Navodaya Vidayalaya Ramkhiriya Panna M.P.</li>
+    <li>Higher Secondary Education: Javahar Navodaya vidayalaya Ozhar Barwani M.P.</li>
+    <li>Bachelor's: International Institute of Information Technology Hyderabad(IIIT Hyderabad).</li>
+    <p>I have completed my primary schooling in my village's government school.
+        then in 5th class, i have given JNVST entrance exam and passed so i had gone to JNV for my further studies.
+        then in 10th class, i have given Dakshana Exam and got selected for Avanti Fellow COE Barwani for JEE coaching and Higher seconadry education. 
+        <br><br>achievements:<li>i got rank 1 in the literature competition in my secondary school.
+        <li>i participated in youth parliament in my school and got certificate.
+    </p>
+  </ul>
+</section>
+
+<section id="skills">
+  <h2>Technical Skills</h2>
+  <ul>
+    <li>i know C and C++ very well.</li>
+    <li>i know NOSQl and MongoDB.</li>
+    <li>i have good undersatnding of HTML and CSS, and also know javascript.</li>
+    <li>i know Postman and used many times in IOT activities as well.</li>
+    <li>python.</li>
+    <li>Git & GitHub.</li>
+  </ul>
+</section>
+
+<section id="cv">
+  <h2>My CV</h2>
+  <a href="My_CV.pdf" target="_blank" style="color: blue;">Download My CV (PDF)</a>
+</section>
+
+<section id="tracking">
+  <h2>User Interaction Tracking</h2>
+  <p>Open your browser console (F12 or right-click → Inspect → Console tab) and click on the elements below to see tracking in action:</p>
+  
+  <div class="tracking-demo">
+    <h3>Click on any element below to see logging in console:</h3>
+    <div class="tracking-elements">
+      <div class="track-item" id="track-text">Click this text</div>
+      <a href="#" class="track-item" id="track-link">Click this link</a>
+      <button class="track-item" id="track-button">Click this button</button>
+      <div class="track-img" id="track-image">Image placeholder</div>
+    </div>
+    
+    <h3 style="margin-top: 20px;">Live tracking log:</h3>
+    <div class="track-log" id="track-log-display">
+      <!-- Log entries will appear here -->
+    </div>
+  </div>
+</section>
+
+<section id="textanalysis">
+  <h2>Text Analysis Tool</h2>
+  <textarea id="bigText" placeholder="Paste your text here (10,000+ words)..."></textarea>
+  <button onclick="analyzeText()">Analyze Text</button>
+  <div class="output" id="textOutput"></div>
+</section>
+
+<script>
+  function showSection(id) {
+    document.querySelectorAll('section').forEach(sec => {
+      sec.classList.remove('active');
+    });
+    document.getElementById(id).classList.add('active');
+  }
+
+  // Enhanced logging function that both logs to console and displays in the tracking section
+  function logEvent(eventType, element) {
+    const tag = element.tagName.toLowerCase();
+    const id = element.id || '';
+    const className = element.className || '';
+    
+    const type = (tag === "img" || id === "track-image") ? "image" :
+                 (tag === "a" || id === "track-link") ? "link" :
+                 (tag === "button" || id === "track-button") ? "button" :
+                 (tag === "p" || tag === "div" || tag === "section" || id === "track-text") ? "text" : tag;
+    
+    const timestamp = new Date().toISOString();
+    const logMessage = `${timestamp} , ${eventType} , ${type}`;
+    
+    // Log to console
+    console.log(logMessage);
+    
+    // Also display in the tracking log if the element exists
+    const trackLog = document.getElementById('track-log-display');
+    if (trackLog) {
+      const logEntry = document.createElement('div');
+      logEntry.textContent = logMessage;
+      trackLog.appendChild(logEntry);
+      // Auto scroll to the bottom
+      trackLog.scrollTop = trackLog.scrollHeight;
+    }
+  }
+
+  // Set up logging for all document clicks
+  document.addEventListener('click', e => {
+    logEvent('click', e.target);
+  });
+  
+  // Add special tracking for scroll events
+  document.addEventListener('scroll', () => {
+    logEvent('scroll', document.activeElement || document.body);
+  });
+
+  function analyzeText() {
+    const text = document.getElementById('bigText').value;
+    const words = text.split(/\s+/).filter(Boolean);
+    const letters = (text.match(/[a-zA-Z]/g) || []).length;
+    const spaces = (text.match(/ /g) || []).length;
+    const newlines = (text.match(/\n/g) || []).length;
+    const special = (text.match(/[^a-zA-Z0-9\s]/g) || []).length;
+
+    const pronouns = ["he","she","it","they","we","i","you","him","her","us","them"];
+    const prepositions = ["in","on","at","by","with","about","against","between","into","through","during","before","after"];
+    const articles = ["a","an","the"];
+
+    const pronounCount = {};
+    const prepositionCount = {};
+    const articleCount = {};
+
+    pronouns.forEach(p => pronounCount[p] = 0);
+    prepositions.forEach(p => prepositionCount[p] = 0);
+    articles.forEach(a => articleCount[a] = 0);
+
+    words.forEach(w => {
+        const word = w.toLowerCase();
+        if (pronouns.includes(word)) pronounCount[word]++;
+        if (prepositions.includes(word)) prepositionCount[word]++;
+        if (articles.includes(word)) articleCount[word]++;
+    });
+
+    function formatCounts(countObj) {
+      return Object.entries(countObj)
+        .map(([word, count]) => `${word}: ${count}`)
+        .join('\n');
+    }
+
+    const output = `
+Basic Analysis:
+- Letters: ${letters}
+- Words: ${words.length}
+- Spaces: ${spaces}
+- Newlines: ${newlines}
+- Special Symbols: ${special}
+
+Pronouns Count:
+${formatCounts(pronounCount)}
+
+Prepositions Count:
+${formatCounts(prepositionCount)}
+
+Articles Count:
+${formatCounts(articleCount)}
+    `;
+
+    document.getElementById("textOutput").textContent = output;
+  }
+
+  // Add special event listeners for the tracking demo elements
+  document.addEventListener('DOMContentLoaded', function() {
+    const trackElements = ['track-text', 'track-link', 'track-button', 'track-image'];
+    trackElements.forEach(id => {
+      const element = document.getElementById(id);
+      if (element) {
+        element.addEventListener('click', function(e) {
+          // Prevent default for links
+          if (id === 'track-link') {
+            e.preventDefault();
+          }
+        });
+      }
+    });
+  });
+</script>
+
+</body>
+</html>
